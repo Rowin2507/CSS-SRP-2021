@@ -1,0 +1,239 @@
+/* CSS VARIABLES ---------------------------------------------- */
+/* https://www.w3schools.com/css/css3_variables.asp */
+:root {
+  --color-green: #17fcce;
+  --color-green-hover: #0dd4ac;
+  --color-white: #FFFFFF;
+  --color-dark: #0c0c1f;
+  --color-gray: #e6faf6;
+  --main-font: 'Montserrat', sans-serif;
+}
+
+
+/* PREDEFINED ---------------------------------------------- */
+*, *:after, *:before {
+  margin: 0;
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  box-sizing: border-box;
+  outline: none;
+  font-family: var(--main-font);
+  appearance: none;
+  -webkit-appearance: none;
+}
+body {
+  margin: 0 auto;
+  padding: 0;
+  font-family: var(--main-font);
+  font-size: 16px;
+  font-weight: 400; 
+  font-style: normal;
+  color: var(--color-white); 
+}
+body:after {
+  content: "Rowin Schmidt";
+  position: fixed;
+  left: 35px;
+  bottom: 28px;
+  color: var(--color-green);
+  font-weight: 600; 
+}
+
+
+/* GENERAL STYLING ---------------------------------------------- */
+/* HEADER ----------- */
+
+
+
+/* MAIN ----------- */
+main {
+  margin: 0 auto;
+  height: 100vh;
+  scroll-snap-type: y mandatory;
+  white-space: nowrap;
+  overflow-y: auto;
+}
+main section {
+  height: 100vh;
+  scroll-snap-align: center;
+}
+
+
+
+
+
+/* LOADING OVERLAY */
+/* https://css-tricks.com/clipping-masking-css/ */
+main section:nth-of-type(1) {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  background-color: var(--color-dark);
+}
+main section:nth-of-type(1) svg {
+  width: min(100%, 800px);
+  /* will-change: auto;
+  transform: translate3d(0,0,0);
+  -o-transform: translate3d(0,0,0);
+  -ms-transform: translate3d(0,0,0);
+  -moz-transform: translate3d(0,0,0);
+  -webkit-transform: translate3d(0,0,0);
+
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -ms-backface-visibility: hidden;
+  backface-visibility: hidden;
+
+  -webkit-perspective: 1000;
+  -moz-perspective: 1000;
+  -ms-perspective: 1000;
+  perspective: 1000; */
+
+  /* clip-path: polygon(); */
+}
+main section:nth-of-type(1) svg polygon {
+  fill: var(--color-green);
+}
+
+main section:nth-of-type(2) {
+  position: relative;
+  overflow: hidden;
+}
+main section:nth-of-type(2) h1 {
+  display: block;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  font-size: 12.5em;
+  width: fit-content;
+  color: transparent;
+  background-image: url("../images/pictures/audi-etron-gt.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-clip: text;
+  -webkit-background-clip: text;
+  transform: translateX(-50%) translateY(-50%);
+  animation: text-zoom 5s infinite;
+  will-change: transform;
+}
+main section:nth-of-type(2) h2 {
+  display: block;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  color: var(--color-green);
+  font-size: 3.5em;
+  animation: text-zoom2 5s infinite;
+  will-change: transform;
+}
+
+main section:nth-of-type(3) {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--color-gray);
+}
+main section:nth-of-type(3) h2 {
+  position: relative;
+  display: inline-block;
+  font-size: 3.5em;
+  animation: shoot-pistol 2s infinite ease;
+  z-index: 2;
+}
+main section:nth-of-type(3) span {
+  display: inline-block;
+  position: absolute;
+  top: calc(50% - 15px);
+  left: calc(50% - 20px);
+  height: 4px; 
+  width: 12px;
+  border-radius: 2px 0 0 2px;
+  background-color: var(--color-dark);
+  transform: translateX(-50%) translateY(-50%);
+  z-index: 1;
+  animation: shoot-bullet 2s infinite linear;
+}
+main section:nth-of-type(3) h2:before {
+  content: '';
+  display: inline-block;
+  position: absolute;
+  top: calc(50% - 2px);
+  left: calc(50% + 2px);
+  height: 1em; 
+  width: 1em;
+  transform: translateX(-50%) translateY(-50%);
+  border-radius: 100%;
+  background-color: var(--color-white);
+  z-index: -1;
+  animation: shoot-bg 2s infinite ease;
+}
+
+
+
+/* KEYFRAMES ---------------------------------------------- */
+@keyframes text-zoom {
+  0%, 15%, 95%, 100% {
+    transform: translateX(-50%) translateY(-50%) scale(1);
+  }
+  50% {
+    transform: translateX(-50%) translateY(-50%) scale(100);
+  }
+}
+
+@keyframes text-zoom2 {
+  0%, 15%, 95%, 100% {
+    transform: translateX(-50%) translateY(-50%) scale(0);
+    opacity: 0;
+  }
+  25%, 75% {
+    opacity: 1;
+  }
+  50% {
+    transform: translateX(-50%) translateY(-50%) scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes shoot-pistol {
+  0%, 3% {
+    transform: rotate(0deg);
+  }
+  8% {
+    transform: rotate(15deg);
+  }
+}
+
+@keyframes shoot-bullet {
+  0% {
+    transform: translateX(0) translateY(-50%);
+  }
+  50%, 100% {
+    transform: translateX(-100vh) translateY(-50%);
+  }
+}
+
+@keyframes shoot-bg {
+  0%, 1%, 100% {
+    height: 1em;
+    width: 1em;
+    opacity: 0.85;
+  }
+  50% {
+    height: 5em;
+    width: 5em;
+    opacity: 0;
+  }
+  99.9% {
+    opacity: 0;
+  }
+}
+
